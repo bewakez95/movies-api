@@ -20,17 +20,17 @@ function Search({ setMovieList, setIsError }) {
       // Make a call using Axios
       const response = await axios.get(omdbApi + form); // form will make dynamic serach in API
       // console.log(response);
-      if (response.data.Response) {
+      if (!response.data.Error) {
         // setMovie(response.data);
         setMovieList(response.data.Search);
         // console.log(response.data.Search);
       } else {
-        setMovieList("");
+        setMovieList({});
         setIsError(true);
         // setMovie({});
       }
     } catch (e) {
-      setMovieList("");
+      setMovieList({});
 
       setIsError(true);
       // setMovie({});
